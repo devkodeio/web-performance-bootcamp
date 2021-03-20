@@ -1,0 +1,51 @@
+.gallery {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.gallery .image {
+  grid-area: span 1 / span 1;
+}
+
+.gallery .image-horizontal {
+  grid-area: span 1 / span 2;
+}
+
+.gallery .image-vertical {
+  grid-area: span 2 / span 1;
+}
+
+.gallery .image-big {
+  grid-area: span 2 / span 2;
+}
+
+.gallery img.lazy {
+  opacity: 0.1;
+  will-change: opacity;
+  transition: all 0.3s;
+}
+
+.gallery img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #ccc;
+  transition: 0.5s;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 400px) {
+  .gallery .image-horizontal,
+  .gallery .image-vertical,
+  .gallery .image-big {
+    grid-area: span 1 / span 1;
+  }
+}

@@ -1,0 +1,23 @@
+.consent-banner {
+  position: relative;
+  width: 100%;
+  background: #3348ca;
+  color: #fff;
+  /* position: fixed;
+  bottom: 0; */
+}
+
+.consent-banner .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.consent-banner a {
+    text-decoration: underline;
+    color: #fff;
+    margin-left: 15px;
+}

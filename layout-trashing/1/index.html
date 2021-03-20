@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout</title>
+    <style>
+      .box {
+        height: 100px;
+        width: 100px;
+        background: #46b8e9;
+        margin: 5px;
+        color: #fff;
+        font-size: 18px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1" class="box">1</div>
+    <div id="box2" class="box">2</div>
+    <div id="box3" class="box">3</div>
+    <div id="box4" class="box">4</div>
+    <div id="box5" class="box">5</div>
+    <div id="box6" class="box">6</div>
+
+    <hr />
+    <button onclick="increaseHeight(10)">Increase height</button>
+    <button onclick="displayNone('box3')">Display:none (Box 3)</button>
+    <button onclick="visibilityHidden('box4')">Visibility:hidden (Box 4)</button>
+
+    <script>
+      function increaseHeight(size) {
+        var box1Height = document.getElementById("box1").clientHeight;
+        var box2Height = document.getElementById("box2").clientHeight;
+        var box3Height = document.getElementById("box3").clientHeight;
+        var box4Height = document.getElementById("box4").clientHeight;
+        var box5Height = document.getElementById("box5").clientHeight;
+        var box6Height = document.getElementById("box6").clientHeight;
+
+        document.getElementById("box1").style.height = box1Height + size + "px";
+        document.getElementById("box2").style.height = box2Height + size + "px";
+        document.getElementById("box3").style.height = box3Height + size + "px";
+        document.getElementById("box4").style.height = box4Height + size + "px";
+        document.getElementById("box5").style.height = box5Height + size + "px";
+        document.getElementById("box6").style.height = box6Height + size + "px";
+      }
+
+      function displayNone(id) {
+        document.getElementById(id).style.display = 'none';
+      }
+
+      function visibilityHidden(id) {
+        document.getElementById(id).style.visibility = 'hidden';
+      }
+    </script>
+  </body>
+</html>

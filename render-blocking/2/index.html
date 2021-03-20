@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Render blocking</title>
+  </head>
+  <body>
+    <style>
+      span {
+        color: blue;
+      }
+    </style>
+    Hello 
+    <span>World</span>
+    <link rel="stylesheet" href="style1.css"> <!-- 3 seconds (red)--> 
+    <link rel="stylesheet" href="style2.css"> <!-- 0 milli seconds (green)-->
+  </body>
+</html>

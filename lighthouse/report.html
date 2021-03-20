@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance report</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #myChart {
+        height: 500px !important;
+        width: 500px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="chart-container"
+      style="position: relative; height: 40vh; width: 80vw"
+    >
+      <canvas id="chart"></canvas>
+    </div>
+
+    <script>
+      function drawChart({ labels, fcp, lcp, fid }) {
+        var ctx = document.getElementById("chart");
+        var myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "FCP",
+                fill: false,
+                backgroundColor: "red",
+                borderColor: "red",
+                data: fcp,
+                yAxisID: "y-axis-1",
+              },
+              {
+                label: "LCP",
+                fill: false,
+                backgroundColor: "green",
+                borderColor: "green",
+                data: lcp,
+                yAxisID: "y-axis-1",
+              },
+              {
+                label: "FID",
+                fill: false,
+                backgroundColor: "blue",
+                borderColor: "blue",
+                data: fid,
+                yAxisID: "y-axis-2",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            title: {
+              display: true,
+              text: "Performance chart",
+            },
+            elements: {
+              line: {
+                tension: 0,
+              },
+            },
+            scales: {
+              yAxes: [
+                {
+                  type: "linear",
+                  display: true,
+                  position: "left",
+                  id: "y-axis-1",
+                },
+                {
+                  type: "linear",
+                  display: true,
+                  position: "right",
+                  id: "y-axis-2",
+
+                  gridLines: {
+                    drawOnChartArea: false,
+                  },
+                },
+              ],
+            },
+          },
+        });
+      }
+
+      fetch("api/performance")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.data);
+          const payload = {
+            labels: [],
+            fcp: [],
+            lcp: [],
+            fid: [],
+          };
+          data.data.forEach((el) => {
+            payload["fcp"].push(el.fcp);
+            payload["lcp"].push(el.lcp);
+            payload["fid"].push(el.fid);
+            const time = new Date(Number(el.time));
+            payload["labels"].push(time.getHours() + ":" + time.getMinutes());
+          });
+
+          drawChart(payload);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Animation Frame</title>
+    <style>
+      .box {
+        height: 100px;
+        width: 100px;
+        background: red;
+        position: absolute;
+      }
+      #box1 {
+        top: 10px;
+      }
+      #box2 {
+        top: 150px;
+      }
+
+      .footer {
+        position: absolute;
+        top: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <div class="footer">
+      <button onclick="run()">Run Animation</button>
+    </div>
+
+    <script>
+      //Conventional Animation
+      function conventionalAnimation() {
+        var elem = document.getElementById("box1");
+        var pos = 0;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (pos == 600) {
+            clearInterval(id);
+          } else {
+            pos++;
+            elem.style.left = pos + "px";
+          }
+        }
+      }
+
+      //requestAnimationFrame
+      function requestAnimation() {
+        var stopId;
+        var progress = 0;
+        var element = document.getElementById("box2");
+        function step(timestamp) {
+          if (progress > 600) {
+            cancelAnimationFrame(stopId);
+            return;
+          } else {
+            progress = progress + 3;
+            element.style.left = progress + "px";
+            stopId = window.requestAnimationFrame(step);
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      function run() {
+        conventionalAnimation();
+        requestAnimation();
+      }
+    </script>
+  </body>
+</html>
+
+<!-- https://vilvaathiban.medium.com/javascript-animations-element-animate-vs-requestanimationframe-vs-conventional-animation-550380b9e05e -->
