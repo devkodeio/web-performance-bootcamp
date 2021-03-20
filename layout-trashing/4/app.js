@@ -79,19 +79,6 @@
         }
       } else {
         // optimized code
-        // var pos = parseInt(m.style.top.slice(0, m.style.top.indexOf('px')));
-        // m.classList.contains('down') ? pos += distance : pos -= distance;
-        // if (pos < 0) pos = 0;
-        // if (pos > maxHeight) pos = maxHeight;
-        // m.style.top = pos + 'px';
-        // if (pos === 0) {
-        //   m.classList.remove('up');
-        //   m.classList.add('down');
-        // }
-        // if (pos === maxHeight) {
-        //   m.classList.remove('down');
-        //   m.classList.add('up');
-        // }
         var pos = parseInt(m.style.top.slice(0, m.style.top.indexOf('px')));
         pos = m.classList.contains('down') ?
         pos + distance : pos - distance;
