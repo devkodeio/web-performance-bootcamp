@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.one, .two {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.box {
+    background: red;
+    height: 100px;
+    width: 100px;
+	animation-duration: 3s;
+    animation-iteration-count: infinite;
+    position: inherit;
+}
+
+.bad-box {
+	animation-name: bad-animation;
+}
+@keyframes bad-animation {
+	0%, 100% {
+		top: 0;
+		left: -100px;
+	}
+	25% {
+		top: -100px;
+		left: 0;
+	}
+	50% {
+		top: 0;
+		left: 100px;
+ 	}
+	75% {
+		top: 100px;
+		left: 0;
+	}
+}
+
+.good-box {
+	animation-name: good-animation;
+}
+@keyframes good-animation {
+	0%, 100% {
+		transform: translate(-100px, 0);
+	}
+	25% {
+		transform: translate(0, -100px);
+	}
+	50% {
+		transform: translate(100px, 0);
+	}
+	75% {
+		transform: translate(0, 100px);
+	}
+}
