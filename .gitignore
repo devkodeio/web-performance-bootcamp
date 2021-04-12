@@ -1,2 +1,4 @@
 .DS_Store
 lighthouse-complete/
+node_modules
+yarn.lock
