@@ -10,7 +10,7 @@
   },
   "config": {
     "port": 3000,
-    "delay": 500,
+    "delay": 1000,
     "compress": false
   },
   "author": "",
